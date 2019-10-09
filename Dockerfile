@@ -1,5 +1,5 @@
-FROM ubuntu:16.04
-MAINTAINER Elico Corp <webmaster@elico-corp.com>
+FROM ubuntu:18.04
+MAINTAINER Pascal GOUHIER <pascal.gouhier@copagex.fr>
 
 # Define build constants
 ENV GIT_BRANCH=12.0 \
