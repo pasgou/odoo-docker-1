@@ -11,7 +11,7 @@ RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
 
 # Generate locales
 RUN apt update \
-  && apt -yq install locales \
+  && apt -yq install apt-utils locales \
   && locale-gen en_US.UTF-8 \
   && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
