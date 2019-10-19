@@ -49,11 +49,19 @@ ADD sources/pip.txt /opt/sources/pip.txt
 RUN pip3 install -r /opt/sources/pip.txt
 
 # Install wkhtmltopdf based on QT5
-ADD https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb \
-  /opt/sources/wkhtmltox.deb
-RUN apt update \
-  && apt install -yq xfonts-base xfonts-75dpi \
-  && dpkg -i /opt/sources/wkhtmltox.deb
+ADD apt-get install -y software-properties-common && \
+sudo apt-add-repository -y "deb http://security.ubuntu.com/ubuntu bionic-security main" && \
+sudo apt-get -yq update && \
+sudo apt-get install -y libxrender1 libfontconfig1 libx11-dev libjpeg62 libxtst6 \
+                           fontconfig xfonts-75dpi xfonts-base libpng12-0 && \
+wget "https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb" && \
+dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && \
+apt-get -f install
+#ADD https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb \
+#  /opt/sources/wkhtmltox.deb
+#RUN apt update \
+#  && apt install -yq xfonts-base xfonts-75dpi \
+#  && dpkg -i /opt/sources/wkhtmltox.deb
 
 # Startup script for custom setup
 ADD sources/startup.sh /opt/scripts/startup.sh
