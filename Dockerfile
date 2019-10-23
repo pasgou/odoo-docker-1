@@ -50,9 +50,9 @@ RUN pip3 install -r /opt/sources/pip.txt
 
 # Install wkhtmltopdf based on QT5
 ADD apt-get install -y software-properties-common && \
-sudo apt-add-repository -y "deb http://security.ubuntu.com/ubuntu bionic-security main" && \
-sudo apt-get -yq update && \
-sudo apt-get install -y libxrender1 libfontconfig1 libx11-dev libjpeg62 libxtst6 \
+apt-add-repository -y ""deb http://security.ubuntu.com/ubuntu bionic-security main"" && \
+apt-get -yq update && \
+apt-get install -y libxrender1 libfontconfig1 libx11-dev libjpeg62 libxtst6 \
                            fontconfig xfonts-75dpi xfonts-base libpng12-0 && \
 wget "https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb" && \
 dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && \
