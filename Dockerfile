@@ -49,14 +49,16 @@ ADD sources/pip.txt /opt/sources/pip.txt
 RUN pip3 install -r /opt/sources/pip.txt
 
 # Install wkhtmltopdf based on QT5
-ADD apt install -y software-properties-common && \
-apt-add-repository -y "deb http://security.ubuntu.com/ubuntu bionic-security main" && \
-apt -yq update && \
-apt install -y libxrender1 libfontconfig1 libx11-dev libjpeg62 libxtst6 \
-                           fontconfig xfonts-75dpi xfonts-base libpng12-0 && \
-wget "https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb" && \
-dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && \
-apt -f install
+ADD sources/wkhtmltopdf /opt/sources/wkhtmltopdf
+RUN bash /opt/sources/wkhtmltopdf
+#ADD apt install -y software-properties-common && \
+#apt-add-repository -y "deb http://security.ubuntu.com/ubuntu bionic-security main" && \
+#apt -yq update && \
+#apt install -y libxrender1 libfontconfig1 libx11-dev libjpeg62 libxtst6 \
+#                           fontconfig xfonts-75dpi xfonts-base libpng12-0 && \
+#wget "https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb" && \
+#dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && \
+#apt -f install
 #ADD https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.xenial_amd64.deb \
 #  /opt/sources/wkhtmltox.deb
 #RUN apt update \
