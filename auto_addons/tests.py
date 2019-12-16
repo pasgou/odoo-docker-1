@@ -2,7 +2,7 @@
 # Copyright 2015 Elico Corp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import unittest
-from auto_addons import *
+from .addons import *
 
 
 class RepoTest(unittest.TestCase):
