@@ -8,13 +8,14 @@ import subprocess
 import sys
 import urlparse
 
-EXTRA_ADDONS_PATH = '/opt/odoo/additional_addons/'
-ODOO_ADDONS_PATH = '/opt/odoo/sources/odoo/addons'
-ODOO_CONF = '/opt/odoo/etc/odoo.conf'
+EXTRA_ADDONS_PATH = '/home/odoo/imported_addons/'
+ODOO_ADDONS_PATH = '/home/odoo/odoo/addons'
+ODOO_CONF = '/home/odoo/conf/odoo-server.conf'
 DEFAULT_SCHEME = 'https'
 DEFAULT_GIT_HOSTING_SERVICE = 'github.com'
 DEFAULT_ORGANIZATION = 'OCA'
 DEPENDENCIES_FILE = 'oca_dependencies.txt'
+REQUIREMENTS_FILE = 'requirements.txt'
 
 
 class Repo(object):
@@ -181,7 +182,7 @@ class Repo(object):
             self.path, self.branch
         )
         return cmd
-
+        
     def _fetch_branch_name(self):
         # Example of output from `git branch` command:
         #   7.0
@@ -225,6 +226,20 @@ class Repo(object):
                 l = line.strip('\n').strip()
                 if l and not l.startswith('#'):
                     Repo(l, self.fetch_dep, self).download(addons_path)
+
+    def _install_requirements(self, addons_path):
+        # Check if the repo contains a requirements file
+        filename = '%s/%s' % (self.path, REQUIREMENTS_FILE)
+        if not os.path.exists(filename):
+            return
+
+        # install the requirements()
+        with open(filename) as f:
+            for line in f:
+                l = line.strip('\n').strip()
+                if l and not l.startswith('#'):
+                    cmd = 'pip3 install %s' % (l)
+                    return cmd
 
     def download(self, addons_path, parent=None, is_retry=False):
 
@@ -276,6 +291,7 @@ class Repo(object):
         if not is_retry:
             addons_path.append(self.path)
             self._download_dependencies(addons_path)
+            self._install_requirements(addons_path)
 
 
 def write_addons_path(addons_path):
