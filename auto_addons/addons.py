@@ -210,7 +210,7 @@ class Repo(object):
                 print >> sys.stderr, 'FATAL: cannot fetch branch name'
                 print >> sys.stderr, 'Path: %s' % self.path
 
-        except Exception e:
+        except Exception, e:
             print >> sys.stderr, 'FATAL: cannot fetch branch name'
             print >> sys.stderr, e
 
@@ -241,7 +241,7 @@ class Repo(object):
                     cmd = 'pip3 install %s' % (l)
                     return cmd
 
-    def download(self, addons_path, parent=None, is_retry=False):
+    def download(self, addons_path, parent=12.0, is_retry=False):
 
 	# No need to fetch a repo twice (it could also cause infinite loop)
         if self.path in addons_path:
