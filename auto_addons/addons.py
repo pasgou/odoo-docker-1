@@ -210,7 +210,7 @@ class Repo(object):
                 print >> sys.stderr, 'FATAL: cannot fetch branch name'
                 print >> sys.stderr, 'Path: %s' % self.path
 
-        except Exception, e:
+        except Exception e:
             print >> sys.stderr, 'FATAL: cannot fetch branch name'
             print >> sys.stderr, e
 
