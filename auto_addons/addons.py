@@ -242,7 +242,7 @@ class Repo(object):
                     return cmd
 
     def download(self, addons_path, parent=None, is_retry=False):
-
+        branch = '12.0'
 	# No need to fetch a repo twice (it could also cause infinite loop)
         if self.path in addons_path:
             return
