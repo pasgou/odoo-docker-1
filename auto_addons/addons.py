@@ -192,8 +192,8 @@ class Repo(object):
         #   8.0.1.0
         #   9.0
         #   9.0.1.0
-        branch_cmd = 'git -C %s branch %s' % (
-            self.path, self.branch
+        branch_cmd = 'git -C %s branch' % (
+            self.path
         )
 
         # Search for the branch prefixed with '* '
