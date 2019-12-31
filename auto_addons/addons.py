@@ -313,7 +313,7 @@ def main():
     fetch_dep = True
     remote_url = None
     addons_path = []
-    branch = 12.0
+    branch = '12.0'
 
     # 1st param is FETCH_OCA_DEPENDENCIES
     if len(sys.argv) > 1:
