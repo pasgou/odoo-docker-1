@@ -241,7 +241,7 @@ class Repo(object):
                     cmd = 'pip3 install %s' % (l)
                     return cmd
 
-    def download(self, addons_path, parent=NONE, is_retry=False):
+    def download(self, addons_path, parent=None, is_retry=False):
 
 	# No need to fetch a repo twice (it could also cause infinite loop)
         if self.path in addons_path:
