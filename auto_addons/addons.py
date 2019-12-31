@@ -166,14 +166,10 @@ class Repo(object):
 
     @property
     def download_cmd(self):
-        if self.branch:
-            cmd = 'git clone -b %s %s %s' % (
+        cmd = 'git clone -b %s %s %s' % (
                 self.branch, self.resolve_url, self.path
             )
-        else:
-            cmd = 'git clone -b 12.0 %s %s' % (
-                self.resolve_url, self.path
-            )
+
         return cmd
 
     @property
