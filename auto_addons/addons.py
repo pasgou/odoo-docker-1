@@ -37,7 +37,8 @@ class Repo(object):
         self.netloc = DEFAULT_GIT_HOSTING_SERVICE
         self.organization = DEFAULT_ORGANIZATION
         self.repository = None
-        self.branch = parent.branch if parent else None
+#        self.branch = parent.branch if parent else None
+        self.branch = 12.0
         self.folder = None
 
         self._parse()
