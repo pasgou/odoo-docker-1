@@ -171,7 +171,7 @@ class Repo(object):
                 self.branch, self.resolve_url, self.path
             )
         else:
-            cmd = 'git clone %s %s' % (
+            cmd = 'git clone -b 12.0 %s %s' % (
                 self.resolve_url, self.path
             )
         return cmd
@@ -242,7 +242,7 @@ class Repo(object):
                     return cmd
 
     def download(self, addons_path, parent=None, is_retry=False):
-        branch = '12.0'
+
 	# No need to fetch a repo twice (it could also cause infinite loop)
         if self.path in addons_path:
             return
