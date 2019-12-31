@@ -37,8 +37,7 @@ class Repo(object):
         self.netloc = DEFAULT_GIT_HOSTING_SERVICE
         self.organization = DEFAULT_ORGANIZATION
         self.repository = None
-#        self.branch = parent.branch if parent else None
-        self.branch = 12.0
+        self.branch = parent.branch if parent else None
         self.folder = None
 
         self._parse()
@@ -242,7 +241,7 @@ class Repo(object):
                     cmd = 'pip3 install %s' % (l)
                     return cmd
 
-    def download(self, addons_path, parent=12.0, is_retry=False):
+    def download(self, addons_path, parent=NONE, is_retry=False):
 
 	# No need to fetch a repo twice (it could also cause infinite loop)
         if self.path in addons_path:
@@ -314,6 +313,7 @@ def main():
     fetch_dep = True
     remote_url = None
     addons_path = []
+    branch = 12.0
 
     # 1st param is FETCH_OCA_DEPENDENCIES
     if len(sys.argv) > 1:
