@@ -33,8 +33,8 @@ RUN /bin/bash -c "mkdir -p /opt/odoo/{etc,sources/odoo,additional_addons,data,ss
 
 # Add Odoo sources and remove .git folder in order to reduce image size
 WORKDIR /opt/odoo/sources
-RUN git clone --depth=1 https://github.com/oca/ocb.git -b $GIT_BRANCH \
-  && mv ocb odoo && rm -rf odoo/.git
+RUN git clone --depth=1 https://github.com/oca/ocb.git -b $GIT_BRANCH odoo \
+  && rm -rf odoo/.git
 
 ADD sources/odoo.conf /opt/odoo/etc/odoo.conf
 ADD auto_addons /opt/odoo/auto_addons
